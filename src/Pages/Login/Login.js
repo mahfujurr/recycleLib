@@ -1,29 +1,74 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
+
+// import useToken from '../../hooks/useToken';
 
 const Login = () => {
+    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { signIn } = useContext(AuthContext);
+    const [loginError, setLoginError] = useState('');
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    // const [token] = useToken(loginUserEmail);
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || '/';
+
+    // if (token) {
+    //     navigate(from, { replace: true });
+    // }
+
+    const handleLogin = data => {
+        console.log(data);
+        setLoginError('');
+        signIn(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                setLoginUserEmail(data.email);
+            })
+            .catch(error => {
+                console.log(error.message)
+                setLoginError(error.message);
+            });
+    }
+
     return (
-        <div>
-            <section class="text-gray-600 body-font">
-                <div class="container px-5 py-24 mx-auto flex flex-wrap items-center">
-                    <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
-                        <h1 class="title-font font-medium text-3xl text-gray-900">Slow-carb next level shoindcgoitch ethical authentic, poko scenester</h1>
-                        <p class="leading-relaxed mt-4">Poke slow-carb mixtape knausgaard, typewriter street art gentrify hammock starladder roathse. Craies vegan tousled etsy austin.</p>
+        <div className='h-[800px] flex justify-center items-center'>
+            <div className='w-96 p-7'>
+                <h2 className='text-xl text-center'>Login</h2>
+                <form onSubmit={handleSubmit(handleLogin)}>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label"> <span className="label-text">Email</span></label>
+                        <input type="text"
+                            {...register("email", {
+                                required: "Email Address is required"
+                            })}
+                            className="input input-bordered w-full max-w-xs" />
+                        {errors.email && <p className='text-red-600'>{errors.email?.message}</p>}
                     </div>
-                    <div class="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
-                        <h2 class="text-gray-900 text-lg font-medium title-font mb-5">Login</h2>
-                        <div class="relative mb-4">
-                            <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
-                            <input type="email" id="email" name="email" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-                        </div>
-                        <div class="relative mb-4">
-                            <label for="full-name" class="leading-7 text-sm text-gray-600">Password</label>
-                            <input type="password" id="full-name" name="full-name" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" spellcheck="false" data-ms-editor="true" />
-                        </div>
-                        <button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Login</button>
-                        
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label"> <span className="label-text">Password</span></label>
+                        <input type="password"
+                            {...register("password", {
+                                required: "Password is required",
+                                minLength: { value: 6, message: 'Password must be 6 characters or longer' }
+                            })}
+                            className="input input-bordered w-full max-w-xs" />
+                        <label className="label"> <span className="label-text">Forget Password?</span></label>
+                        {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                     </div>
-                </div>
-            </section>
+                    <input className='btn btn-accent w-full' value="Login" type="submit" />
+                    <div>
+                        {loginError && <p className='text-red-600'>{loginError}</p>}
+                    </div>
+                </form>
+                <p>New to Doctors Portal <Link className='text-secondary' to="/signup">Create new Account</Link></p>
+                <div className="divider">OR</div>
+                <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+            </div>
         </div>
     );
 };
