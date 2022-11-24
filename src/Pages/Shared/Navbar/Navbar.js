@@ -3,7 +3,12 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 
 const Navbar = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(err => console.log(err));
+    }
     return (
         <div>
             <div className="navbar bg-base-100">
@@ -24,12 +29,14 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     {user?.email ?
+                        <Link to='/signup'><button onClick={handleLogOut} className="inline-flex items-center bg-black border-0 py-2 px-4 font-medium  hover:bg-black/80 rounded-2xl text-white">SignOut</button></Link>
+
+                        :
                         <div className="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
+
                             <Link to='/login'><button className="inline-flex items-center bg-black border-0 py-2 px-4 font-medium  hover:bg-black/80 rounded-2xl text-white lg:mr-3">Login</button></Link>
                             <Link to='/signup'><button className="inline-flex items-center bg-black border-0 py-2 px-4 font-medium  hover:bg-black/80 rounded-2xl text-white">SignUp</button></Link>
                         </div>
-                        :
-                        <Link to='/signup'><button className="inline-flex items-center bg-black border-0 py-2 px-4 font-medium  hover:bg-black/80 rounded-2xl text-white">SignUp</button></Link>
                     }
                 </div>
             </div>
