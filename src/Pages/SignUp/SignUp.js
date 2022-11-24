@@ -28,11 +28,12 @@ const SignUp = () => {
                 const userInfo = {
                     displayName: data.name
                 }
-                // updateUser(userInfo)
-                //     .then(() => {
-                //         // saveUser(data.name, data.email);
-                //     })
-                //     .catch(err => console.log(err));
+                updateUser(userInfo)
+                    .then(() => {
+                        console.log(data.name, data.email, data.userType);
+                        // saveUser(data.name, data.email , data.userType);
+                    })
+                    .catch(err => console.log(err));
             })
             .catch(error => {
                 console.log(error)
@@ -40,8 +41,8 @@ const SignUp = () => {
             });
     }
 
-    // const saveUser = (name, email) => {
-    //     const user = { name, email };
+    // const saveUser = (name, email, userType) => {
+    //     const user = { name, email, userType};
     //     fetch('https://doctors-portal-server-rust.vercel.app/users', {
     //         method: 'POST',
     //         headers: {
@@ -56,7 +57,7 @@ const SignUp = () => {
     // }
     return (
         <div>
-            <div className='h-[800px] flex justify-center items-center'>
+            <div className=' flex justify-center items-center'>
                 <div className='w-96 p-7'>
                     <h2 className='text-xl text-center'>Sign Up</h2>
                     <form onSubmit={handleSubmit(handleSignUp)}>
@@ -67,6 +68,9 @@ const SignUp = () => {
                             })} className="input input-bordered w-full max-w-xs" />
                             {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                         </div>
+
+
+
                         <div className="form-control w-full max-w-xs">
                             <label className="label"> <span className="label-text">Email</span></label>
                             <input type="email" {...register("email", {
@@ -82,6 +86,20 @@ const SignUp = () => {
                                 pattern: { value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message: 'Password must have uppercase, number and special characters' }
                             })} className="input input-bordered w-full max-w-xs" />
                             {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
+                        </div>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label"> <span className="label-text">Select account type</span></label>
+                            <select
+                                {...register("userType")}
+                                className=" select select-bordered select-sm w-full max-w-xs">
+                                <option defaultValue>User</option>
+                                <option>Seller</option>
+
+                            </select>
+                            {/* <input type="text" {...register("name", {
+                                required: "Name is Required"
+                            })} className="input input-bordered w-full max-w-xs" />
+                            {errors.name && <p className='text-red-500'>{errors.name.message}</p>} */}
                         </div>
                         <input className='btn btn-accent w-full mt-4' value="Sign Up" type="submit" />
                         {signUpError && <p className='text-red-600'>{signUpError}</p>}
