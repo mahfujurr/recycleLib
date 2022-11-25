@@ -31,7 +31,7 @@ const SignUp = () => {
                 updateUser(userInfo)
                     .then(() => {
                         console.log(data.name, data.email, data.userType);
-                        // saveUser(data.name, data.email , data.userType);
+                        saveUser(data.name, data.email , data.userType);
                     })
                     .catch(err => console.log(err));
             })
@@ -41,20 +41,20 @@ const SignUp = () => {
             });
     }
 
-    // const saveUser = (name, email, userType) => {
-    //     const user = { name, email, userType};
-    //     fetch('https://doctors-portal-server-rust.vercel.app/users', {
-    //         method: 'POST',
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify(user)
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setCreatedUserEmail(email);
-    //         })
-    // }
+    const saveUser = (name, email, userType) => {
+        const user = { name, email, userType};
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setCreatedUserEmail(email);
+            })
+    }
     return (
         <div>
             <div className=' flex justify-center items-center'>
@@ -92,7 +92,7 @@ const SignUp = () => {
                             <select
                                 {...register("userType")}
                                 className=" select select-bordered select-sm w-full max-w-xs">
-                                <option defaultValue>User</option>
+                                <option defaultValue>Buyer</option>
                                 <option>Seller</option>
 
                             </select>

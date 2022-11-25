@@ -19,8 +19,15 @@ const Navbar = () => {
                         </label>
                         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             <li><Link to='/'>Homepage</Link></li>
-                            <li><a>Blog</a></li>
-                            <li><a>About</a></li>
+                            {
+                                user?.uid 
+                                ? 
+                                <li><Link to='/dashboard'>DashBoard</Link></li>
+                                :
+                                <></>
+                            }
+                            <li><Link>Blog</Link></li>
+                            <li><Link>About</Link></li>
                         </ul>
                     </div>
                 </div>

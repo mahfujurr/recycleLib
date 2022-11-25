@@ -1,11 +1,12 @@
 import React from 'react';
-import Loading from '../Shared/Loading/Loading';
 
 const Home = () => {
     return (
         <div>
-            <h1>this is home</h1>
-            <Loading></Loading>
+            <h1 className='text-4xl'>Sell your old book now!</h1>
+            <h1 className='text-2xl'>Your trash might be someone's treasure</h1>
+            <p></p>
+            
         </div>
     );
 };
