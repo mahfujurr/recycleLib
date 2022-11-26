@@ -1,5 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../Layout/Main";
+import Blog from "../../Pages/Blog/Blog";
+import CategoryBooks from "../../Pages/CategoryBooks/CategoryBooks";
 import AddBooks from "../../Pages/Dashboard/AddBooks/AddBooks";
 import AddedBooks from "../../Pages/Dashboard/AddedBooks/AddedBooks";
 import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
@@ -15,8 +17,8 @@ import SignUp from "../../Pages/SignUp/SignUp";
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <Main></Main>, 
-        errorElement:<ErrorPage></ErrorPage> ,
+        element: <Main></Main>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
@@ -30,6 +32,15 @@ const router = createBrowserRouter([
                 path: '/signup',
                 element: <SignUp></SignUp>
             },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
+            },
+            {
+                path:'/categories/:id',
+                element: <CategoryBooks></CategoryBooks>,
+                loader: ({params}) => fetch(`http://localhost:5000/allbooks/${params.id}`) 
+            }
             // {
             //     path: '/appointment',
             //     element: <Appointment></Appointment>
@@ -39,11 +50,11 @@ const router = createBrowserRouter([
     {
         path: '/dashboard',
         element: <DashboardLayout></DashboardLayout>,
-        errorElement:<ErrorPage></ErrorPage> ,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/dashboard',
-                
+
             },
             {
                 path: '/dashboard/allbuyers',
@@ -69,14 +80,20 @@ const router = createBrowserRouter([
                 path: '/dashboard/addedbooks',
                 element: <AddedBooks></AddedBooks>
             },
+            {
+                path: '/dashboard/blog',
+                element: <Blog></Blog>
+            },
+
             // {
             //     path: '/dashboard/payment/:id',
             //     element: <Payment></Payment>,
             //     loader: ({params}) => fetch(`https://doctors-portal-server-rust.vercel.app/bookings/${params.id}`)
             // },
         ]
-    }
+    },
     
+
 ])
 
 export default router;

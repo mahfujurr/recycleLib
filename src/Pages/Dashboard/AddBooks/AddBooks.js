@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../Context/AuthProvider';
 
 const AddBooks = () => {
+  
+
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const {user} = useContext(AuthContext);
-    const handleSignUp = (data) => {
+    const { user } = useContext(AuthContext);
+    const handleAdd = (data) => {
         const bookName = data.bookName;
         const bookPrice = data.price;
         const bookCondition = data.condition;
@@ -16,6 +18,7 @@ const AddBooks = () => {
         const bookPYear = data.bookPYear;
         const email = user.email;
         const photo = data.photoURL;
+        
         const allBooks = {
             bookName,
             bookPrice,
@@ -26,7 +29,8 @@ const AddBooks = () => {
             bookDetails,
             bookPYear,
             email,
-            photo
+            photo,
+            
         }
         // setSignUPError('');
         console.log(allBooks)
@@ -48,7 +52,7 @@ const AddBooks = () => {
     return (
         <div>
 
-            <form onSubmit={handleSubmit(handleSignUp)} className="w-full h-auto bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 p-4 flex items-center justify-center" >
+            <form onSubmit={handleSubmit(handleAdd)} className="w-full h-auto bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 p-4 flex items-center justify-center" >
                 <div className="bg-white  rounded-2xl py-6 px-10 sm:max-w-md w-full backdrop-blur-sm bg-white/30 ">
                     <div className="sm:text-3xl text-2xl font-semibold text-center text-sky-600  mb-4">
                         Enter book information
@@ -70,7 +74,7 @@ const AddBooks = () => {
                         </div>
                         <div className="form-control w-full max-w-xs">
                             <label className="label"> <span className="label-text">Phone Number</span></label>
-                            <input defaultValue={'+880'}  type="text" {...register("mobileNumber", {
+                            <input defaultValue={'+880'} type="text" {...register("mobileNumber", {
                                 required: "Name is Required"
                             })} className="input input-bordered w-full max-w-xs input-sm" />
                             {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
@@ -120,9 +124,9 @@ const AddBooks = () => {
                             <select
                                 {...register("bookCategory")}
                                 className=" select select-bordered select-sm w-full max-w-xs">
-                                <option defaultValue>Comic Book</option>
-                                <option>Romance</option>
-                                <option>Science Fiction</option>
+                                <option>comic</option>
+                                <option>romance</option>
+                                <option>sci-fi</option>
 
                             </select>
                         </div>

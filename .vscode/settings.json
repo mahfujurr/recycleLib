@@ -4,7 +4,9 @@
         "allbuyers",
         "allsellers",
         "bookowner",
+        "categoryid",
         "myorders",
-        "reporteditems"
+        "reporteditems",
+        "scifi"
     ]
 }
