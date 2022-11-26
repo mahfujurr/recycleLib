@@ -11,7 +11,7 @@ const Navbar = () => {
     }
     return (
         <div>
-            <div className="navbar bg-base-100">
+            <div className="navbar  flex-row-reverse justify-between lg:flex-row bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 ">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost btn-circle">
@@ -20,11 +20,11 @@ const Navbar = () => {
                         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             <li><Link to='/'>Homepage</Link></li>
                             {
-                                user?.uid 
-                                ? 
-                                <li><Link to='/dashboard'>DashBoard</Link></li>
-                                :
-                                <></>
+                                user?.uid
+                                    ?
+                                    <li><Link to='/dashboard'>DashBoard</Link></li>
+                                    :
+                                    <></>
                             }
                             <li><Link>Blog</Link></li>
                             <li><Link>About</Link></li>
@@ -46,6 +46,7 @@ const Navbar = () => {
                         </div>
                     }
                 </div>
+                
             </div>
 
         </div>

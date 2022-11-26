@@ -15,6 +15,7 @@ const AddBooks = () => {
         const bookDetails = data.bookDetails;
         const bookPYear = data.bookPYear;
         const email = user.email;
+        const photo = data.photoURL;
         const allBooks = {
             bookName,
             bookPrice,
@@ -24,21 +25,22 @@ const AddBooks = () => {
             bookCategory,
             bookDetails,
             bookPYear,
-            email
+            email,
+            photo
         }
         // setSignUPError('');
         console.log(allBooks)
-        // fetch('http://localhost:5000/books', {
-        //     method: 'POST',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify()
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         // setCreatedUserEmail(email);
-        //     })
+        fetch('http://localhost:5000/allbooks', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(allBooks)
+        })
+            .then(res => res.json())
+            .then(data => {
+                // setCreatedUserEmail(email);
+            })
 
     }
 
@@ -46,8 +48,8 @@ const AddBooks = () => {
     return (
         <div>
 
-            <form onSubmit={handleSubmit(handleSignUp)} className="w-full h-auto    bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-4 flex items-center justify-center" >
-                <div className="bg-white py-6 px-10 sm:max-w-md w-full backdrop-blur-sm bg-white/30 ">
+            <form onSubmit={handleSubmit(handleSignUp)} className="w-full h-auto bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 p-4 flex items-center justify-center" >
+                <div className="bg-white  rounded-2xl py-6 px-10 sm:max-w-md w-full backdrop-blur-sm bg-white/30 ">
                     <div className="sm:text-3xl text-2xl font-semibold text-center text-sky-600  mb-4">
                         Enter book information
                     </div>
@@ -61,14 +63,14 @@ const AddBooks = () => {
                         </div>
                         <div className="form-control w-full max-w-xs">
                             <label className="label"> <span className="label-text">Price</span></label>
-                            <input type="text" {...register("price", {
+                            <input defaultValue={'$'} type="text" {...register("price", {
                                 required: "Name is Required"
                             })} className="input input-bordered w-full max-w-xs input-sm" />
                             {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                         </div>
                         <div className="form-control w-full max-w-xs">
                             <label className="label"> <span className="label-text">Phone Number</span></label>
-                            <input type="text" {...register("mobileNumber", {
+                            <input defaultValue={'+880'}  type="text" {...register("mobileNumber", {
                                 required: "Name is Required"
                             })} className="input input-bordered w-full max-w-xs input-sm" />
                             {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
@@ -90,6 +92,13 @@ const AddBooks = () => {
                         <div className="form-control w-full max-w-xs">
                             <label className="label"> <span className="label-text">Book Purchasing Year</span></label>
                             <input type="text" {...register("bookPYear", {
+                                required: "Name is Required"
+                            })} className="input input-bordered w-full max-w-xs input-sm" />
+                            {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                        </div>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label"> <span className="label-text">Book Picture</span></label>
+                            <input type="text" {...register("photoURL", {
                                 required: "Name is Required"
                             })} className="input input-bordered w-full max-w-xs input-sm" />
                             {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
@@ -116,10 +125,6 @@ const AddBooks = () => {
                                 <option>Science Fiction</option>
 
                             </select>
-                            {/* <input type="text" {...register("name", {
-                                required: "Name is Required"
-                            })} className="input input-bordered w-full max-w-xs" />
-                            {errors.name && <p className='text-red-500'>{errors.name.message}</p>} */}
                         </div>
 
                         <div className="flex">

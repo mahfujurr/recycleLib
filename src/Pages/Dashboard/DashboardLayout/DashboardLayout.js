@@ -15,17 +15,21 @@ const DashboardLayout = () => {
             })
     }, [user?.email])
     return (
-        <div>
+        <div className='bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200'>
             <Navbar></Navbar>
+            <label htmlFor="dashboard-drawer" tabIndex={1} className="btn bg-black  fixed left-0 top-2 lg:hidden">
+                    OPen
+            </label>
             <div className="drawer drawer-mobile">
                 <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
                     <Outlet></Outlet>
                 </div>
-                <div className="drawer-side">
+                
+                <div className="drawer-side ">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 text-base-content">
-                        {(userInfo.userType === 'admin') ?
+                    <ul className="menu p-4 w-80 text-base-content backdrop-blur-sm bg-white/30 font-semibold">
+                        {(userInfo.role === 'admin') ?
                             <>
                                 <li><Link to="/dashboard/allbuyers">All Buyers</Link></li>
                                 <li><Link to="/dashboard/allsellers">All Sellers</Link></li>
@@ -35,15 +39,15 @@ const DashboardLayout = () => {
                             <></>
                         }
 
-                        {(userInfo.userType === 'Buyer') ?
+                        {(userInfo.role === 'buyer') ?
                             <li><Link to="/dashboard/myorders">My Orders</Link></li>
                             :
                             <></>
                         }
-                        {(userInfo.userType === 'Seller') ?
+                        {(userInfo.role === 'seller') ?
                             <>
-                                <li><Link to="/dashboard/addbooks">Add Books</Link></li>                               
-                                <li><Link to="/dashboard/addedbooks">My Books</Link></li>                               
+                                <li><Link to="/dashboard/addbooks">Add Books</Link></li>
+                                <li><Link to="/dashboard/addedbooks">My Books</Link></li>
                             </>
                             :
                             <></>

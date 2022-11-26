@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
-// import { AuthContext } from '../../Contexts/AuthProvider';
 // import useToken from '../../hooks/useToken';
 
 const SignUp = () => {
@@ -30,8 +29,8 @@ const SignUp = () => {
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        console.log(data.name, data.email, data.userType);
-                        saveUser(data.name, data.email , data.userType);
+                        console.log(data.name, data.email, data.role);
+                        saveUser(data.name, data.email , data.role);
                     })
                     .catch(err => console.log(err));
             })
@@ -41,8 +40,8 @@ const SignUp = () => {
             });
     }
 
-    const saveUser = (name, email, userType) => {
-        const user = { name, email, userType};
+    const saveUser = (name, email, role) => {
+        const user = { name, email, role};
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -90,16 +89,12 @@ const SignUp = () => {
                         <div className="form-control w-full max-w-xs">
                             <label className="label"> <span className="label-text">Select account type</span></label>
                             <select
-                                {...register("userType")}
+                                {...register("role")}
                                 className=" select select-bordered select-sm w-full max-w-xs">
                                 <option defaultValue>Buyer</option>
                                 <option>Seller</option>
 
                             </select>
-                            {/* <input type="text" {...register("name", {
-                                required: "Name is Required"
-                            })} className="input input-bordered w-full max-w-xs" />
-                            {errors.name && <p className='text-red-500'>{errors.name.message}</p>} */}
                         </div>
                         <input className='btn btn-accent w-full mt-4' value="Sign Up" type="submit" />
                         {signUpError && <p className='text-red-600'>{signUpError}</p>}
