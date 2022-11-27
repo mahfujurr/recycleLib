@@ -1,6 +1,7 @@
 import React, { useContext} from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../Context/AuthProvider';
+import toast from 'react-hot-toast';
 
 const AddBooks = () => {
   
@@ -42,6 +43,9 @@ const AddBooks = () => {
         })
             .then(res => res.json())
             .then(data => {
+                if (data.acknowledged) {
+                    toast.success('Booking Successful');
+                }
                 
             })
 

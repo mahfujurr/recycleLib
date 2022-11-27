@@ -13,13 +13,6 @@ const AddedBooks = () => {
             })
     }, [user?.email])
 
-    // useEffect(() => {
-    //     fetch(`http://localhost:5000/users/allbuyers/${singleUserInfo.role}`)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setUsers(data);
-    //         })
-    // }, [singleUserInfo.role])
     return (
         <div>
             <table className="table text-center w-full backdrop-blur-sm bg-white/30">
