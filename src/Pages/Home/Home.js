@@ -18,7 +18,7 @@ const Home = () => {
             <div>
                 <h1 className='text-5xl font-bold py-10'>Books Categories</h1>
             </div>
-            <div className='grid grid-cols-3 gap-5'>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
                 {
                     categories.map(c => <Link key={c._id} to={`/categories/${c.categoryid}` }><h1 className='p-7 text-3xl font-semibold backdrop-blur-sm bg-white/40 rounded-2xl hover:bg-white/60'>{c.category}</h1></Link>)
                 }

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
+import img from '../../../Assets/Screenshot_2022-11-27_104711-removebg-preview.png'
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -31,8 +32,9 @@ const Navbar = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="navbar-center">
-                    <Link className="btn btn-ghost normal-case text-xl">RecycleLiB</Link>
+                <div className="navbar-center flex">
+                    <img src={img} className='w-12 mr-2 items-center' alt="" />
+                    <Link to='/' className="normal-case text-3xl font-bold">RecycleLiB</Link>
                 </div>
                 <div className="navbar-end">
                     {user?.email ?

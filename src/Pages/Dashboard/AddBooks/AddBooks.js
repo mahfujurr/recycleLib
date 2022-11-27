@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext} from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../Context/AuthProvider';
 
@@ -32,7 +32,6 @@ const AddBooks = () => {
             photo,
             
         }
-        // setSignUPError('');
         console.log(allBooks)
         fetch('http://localhost:5000/allbooks', {
             method: 'POST',
@@ -43,7 +42,7 @@ const AddBooks = () => {
         })
             .then(res => res.json())
             .then(data => {
-                // setCreatedUserEmail(email);
+                
             })
 
     }
