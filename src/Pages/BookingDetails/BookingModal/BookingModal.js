@@ -33,13 +33,11 @@ const BookingModal = ({ bookDetails }) => {
             .then(data => {
                 console.log(data);
                 if (data.acknowledged) {
-                    // setTreatment(null);
                     toast.success('Booking Successful');
-                    // refetch();
                 }
-                // else{
-                //     toast.error(data.message);
-                // }
+                else{
+                    toast.error(data.message);
+                }
             })
 
 

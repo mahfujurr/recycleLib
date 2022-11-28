@@ -3,6 +3,7 @@ import { Link, Outlet } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import Footer from '../../Shared/Footer/Footer';
 import Navbar from '../../Shared/Navbar/Navbar';
+import { ArrowLeftOnRectangleIcon } from '@heroicons/react/24/solid'
 
 const DashboardLayout = () => {
     const [userInfo, setUserInfo] = useState([]);
@@ -17,8 +18,8 @@ const DashboardLayout = () => {
     return (
         <div className='bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200'>
             <Navbar></Navbar>
-            <label htmlFor="dashboard-drawer" tabIndex={1} className="btn bg-black  fixed left-0 top-2 lg:hidden">
-                    OPen
+            <label htmlFor="dashboard-drawer" tabIndex={1} className="  fixed left-0 top-5 lg:hidden">
+                    <ArrowLeftOnRectangleIcon className="h-6 w-6 text-blue-500"/>
             </label>
             <div className="drawer drawer-mobile">
                 <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
