@@ -6,12 +6,12 @@ import Loading from '../../Shared/Loading/Loading';
 const ReportedItems = () => {
     const { data: reportedbooks = [], isLoading , refetch} = useQuery({
         queryKey: ['reportedbooks'],
-        queryFn: () => fetch('http://localhost:5000/reportedbooks')
+        queryFn: () => fetch('https://recyclelib-server.vercel.app/reportedbooks')
             .then(res => res.json())
     })
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/reportedbooks/${id}`, {
+        fetch(`https://recyclelib-server.vercel.app/reportedbooks/${id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())

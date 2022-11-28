@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 const SingleBook = ({ bookDetails, setBookDetails }) => {
     const { bookName, bookPrice, bookownerLocation, photo, dateTime, bookUsedYear, sellerName, bookOriginalPrice } = bookDetails;
     const setReportDetails = (bdata) => {
-        fetch('http://localhost:5000/reportedbooks', {
+        fetch('https://recyclelib-server.vercel.app/reportedbooks', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
