@@ -20,7 +20,7 @@ const Home = () => {
     return (
         <div className='flex flex-col justify-center items-center bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 px-5 md:px-10 lg:px-48 text-center pt-12 pb-16'>
             <div>
-                <h1 className='text-4xl lg:text-6xl font-bold pb-5'>Sell your old book now!</h1>
+                <h1 className='text-4xl lg:text-5xl font-bold pb-5'>Sell your old book now!</h1>
                 <h1 className='text-2xl font-semibold'>Your trash might be someone's treasure</h1>
                 <p className=' lg:px-48'>When you buy a used book, you never know what you are going to get. Inscriptions in margins or dedications in the front page. You’re taking part in a shared history and better yet, you’re free to add your own little mark along the way too.</p>
             </div>
@@ -34,12 +34,12 @@ const Home = () => {
 
                         {
                             advertisedBooks.map(book =>
-                                
-                                    <Link key={book._id} to={`/categories/${book.bookCategory}`}>
-                                        <h1 className='py-5 px-10 rounded-2xl backdrop-blur-sm bg-white/30'>{book.bookName}</h1>
 
-                                    </Link>
-                                
+                                <Link key={book._id} to={`/categories/${book.bookCategory}`}>
+                                    <h1 className='py-5 px-10 rounded-2xl backdrop-blur-sm bg-white/30'>{book.bookName}</h1>
+
+                                </Link>
+
 
 
                             )
@@ -50,7 +50,7 @@ const Home = () => {
                 </div>
             }
             <div>
-                <h1 className='text-4xl font-bold py-10'>Books Categories</h1>
+                <h1 className='text-4xl font-bold py-10'>Browse books by categories</h1>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
                 {
@@ -59,6 +59,18 @@ const Home = () => {
 
 
             </div>
+            <div>
+                <div className='bg-black text-white px-10 py-5 mt-10 rounded-2xl'>
+                    <h1 className='text-2xl font-semibold mb-5'>Keep getting our updates</h1>
+                    <input type="text" className='rounded-2xl p-2 text-black' placeholder='Email' />
+                    
+                        <button className='ml-3 px-3 py-2 rounded-xl border-2 hover:bg-white hover:text-black'>Subscribe</button>
+                    
+                </div>
+            </div>
+            <a href='https://wa.me/qr/PLKN6DKQI2KLG1'>
+                <img className='w-16 lg:w-24   fixed bottom-5 right-2' src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png" alt="" />
+            </a>
         </div >
     );
 };

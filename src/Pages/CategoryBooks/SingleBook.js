@@ -18,7 +18,7 @@ const SingleBook = ({ bookDetails, setBookDetails }) => {
 
                     <h3>Used time period: {bookUsedYear} years</h3>
                     <h3>Posted time: {dateTime}</h3>
-                    <h3>Seller Name: {sellerName} verify mark</h3>
+                    <h3>Seller Name: {sellerName} </h3>
                     <label htmlFor="my-modal-3" className="btn" onClick={() => setBookDetails(bookDetails)}>Book Now</label>
 
 
