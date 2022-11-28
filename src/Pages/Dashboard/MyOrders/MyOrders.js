@@ -1,14 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider';
+import Loading from '../../Shared/Loading/Loading';
 
 const MyOrders = () => {
-    const [bookedInfo, setBookedInfo] = useState();
-    const { user } = useContext(AuthContext);
+    const [bookedInfo, setBookedInfo] = useState([]);
+    const { user , isLoading} = useContext(AuthContext);
     useEffect(() => {
-        fetch(`http://localhost:5000/dashboard/mybook/${user.email}`)
+        fetch(`http://localhost:5000/dashboard/mybook/${user?.email}`)
             .then(res => res.json())
             .then(data => setBookedInfo(data))
-    }, [user.email])
+    }, [user?.email])
+    // if(isLoading){
+    //     return <Loading></Loading>
+    // }
     return (
         <div>
             <table className="table text-center w-full backdrop-blur-sm bg-white/30">

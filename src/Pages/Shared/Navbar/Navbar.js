@@ -1,18 +1,22 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import img from '../../../Assets/Screenshot_2022-11-27_104711-removebg-preview.png'
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
+    // const location = useLocation()
+    const nav = useNavigate()
     const handleLogOut = () => {
         logOut()
-            .then(() => { })
+            .then(() => { nav('/login')})
             .catch(err => console.log(err));
+            
     }
+    
     return (
         <div>
-            <div className="navbar  flex-row-reverse justify-between lg:flex-row bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 ">
+            <div className="navbar   justify-between lg:flex-row bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 ">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost btn-circle">
@@ -48,7 +52,7 @@ const Navbar = () => {
                         </div>
                     }
                 </div>
-                
+
             </div>
 
         </div>

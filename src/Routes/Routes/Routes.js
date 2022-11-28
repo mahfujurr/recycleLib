@@ -6,6 +6,7 @@ import AddBooks from "../../Pages/Dashboard/AddBooks/AddBooks";
 import AddedBooks from "../../Pages/Dashboard/AddedBooks/AddedBooks";
 import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
 import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
+import DashboardIntro from "../../Pages/Dashboard/DashboadIntro/DashboardIntro";
 import DashboardLayout from "../../Pages/Dashboard/DashboardLayout/DashboardLayout";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import ReportedItems from "../../Pages/Dashboard/ReportedItems/ReportedItems";
@@ -13,6 +14,7 @@ import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import SignUp from "../../Pages/SignUp/SignUp";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -38,7 +40,7 @@ const router = createBrowserRouter([
             },
             {
                 path:'/categories/:id',
-                element: <CategoryBooks></CategoryBooks>,
+                element: <PrivateRoute><CategoryBooks></CategoryBooks></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/allbooks/category/${params.id}`) 
             }
             // {
@@ -54,6 +56,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/dashboard',
+                element:<DashboardIntro></DashboardIntro>
 
             },
             {
