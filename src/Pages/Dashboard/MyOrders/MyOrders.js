@@ -6,7 +6,7 @@ const MyOrders = () => {
     const [bookedInfo, setBookedInfo] = useState([]);
     const { user , isLoading} = useContext(AuthContext);
     useEffect(() => {
-        fetch(`http://localhost:5000/dashboard/mybook/${user?.email}`)
+        fetch(`https://recyclelib-server.vercel.app/dashboard/mybook/${user?.email}`)
             .then(res => res.json())
             .then(data => setBookedInfo(data))
     }, [user?.email])

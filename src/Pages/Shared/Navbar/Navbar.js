@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import img from '../../../Assets/Screenshot_2022-11-27_104711-removebg-preview.png'
-import { ArrowLeftOnRectangleIcon } from '@heroicons/react/24/solid'
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -16,8 +15,8 @@ const Navbar = () => {
     }
 
     return (
-        <div>
-            <div className="navbar   justify-between items-center lg:flex-row bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 ">
+        <div className=''>
+            <div className="navbar lg:px-16  justify-between items-center lg:flex-row bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 ">
                 <div className=' hidden lg:flex navbar-start'>
                     <Link className='mx-5' to='/'>Homepage</Link>
                     {

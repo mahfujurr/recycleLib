@@ -6,7 +6,7 @@ const AddedBooks = () => {
     // const [singleUserInfo, setSingleUserInfo] = useState([]);
     const { user } = useContext(AuthContext);
     useEffect(() => {
-        fetch(`http://localhost:5000/allbooks/${user?.email}`)
+        fetch(`https://recyclelib-server.vercel.app/allbooks/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setUserBooks(data);
