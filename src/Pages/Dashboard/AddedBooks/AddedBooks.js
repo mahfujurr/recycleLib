@@ -8,12 +8,12 @@ const AddedBooks = () => {
     const { user } = useContext(AuthContext);
     const { data: userBooks = [], isLoading, refetch } = useQuery({
         queryKey: ['userBooks'],
-        queryFn: () => fetch(`http://localhost:5000/allbooks/${user?.email}`)
+        queryFn: () => fetch(`https://recyclelib-server.vercel.app/allbooks/${user?.email}`)
             .then(res => res.json())
     })
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/allbooks/${id}`, {
+        fetch(`https://recyclelib-server.vercel.app/allbooks/${id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())
@@ -26,7 +26,7 @@ const AddedBooks = () => {
             })
     }
     const handleAdvertisement = (AdBookData) => {
-        fetch('http://localhost:5000/advertisement', {
+        fetch('https://recyclelib-server.vercel.app/advertisement', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
