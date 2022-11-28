@@ -33,8 +33,8 @@ const SignUp = () => {
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        console.log(data.name, data.email, data.role);
                         saveUser(data.name, data.email, data.role);
+                        navigate(from, { replace: true });
                     })
                     .catch(err => console.log(err));
             })
@@ -70,8 +70,8 @@ const SignUp = () => {
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        console.log(user.displayName, user.email, role);
                         saveUser(user.displayName, user.email, role);
+                        navigate(from, { replace: true });
                     })
                     .catch(err => console.log(err));
 
