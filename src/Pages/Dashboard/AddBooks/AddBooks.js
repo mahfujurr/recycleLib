@@ -50,7 +50,7 @@ const AddBooks = () => {
 
         }
         console.log(allBooks)
-        fetch('https://recyclelib-server.vercel.app/allbooks', {
+        fetch('http://localhost:5000/allbooks', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -41,7 +41,7 @@ const router = createBrowserRouter([
             {
                 path:'/categories/:id',
                 element: <PrivateRoute><CategoryBooks></CategoryBooks></PrivateRoute>,
-                loader: ({params}) => fetch(`https://recyclelib-server.vercel.app/allbooks/category/${params.id}`) 
+                loader: ({params}) => fetch(`http://localhost:5000/allbooks/category/${params.id}`) 
             }
             // {
             //     path: '/appointment',

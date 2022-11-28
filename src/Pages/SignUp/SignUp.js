@@ -83,7 +83,7 @@ const SignUp = () => {
 
     const saveUser = (name, email, role) => {
         const user = { name, email, role };
-        fetch('https://recyclelib-server.vercel.app/users', {
+        fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -133,8 +133,8 @@ const SignUp = () => {
                             <select
                                 {...register("role")}
                                 className=" select select-bordered select-sm w-full max-w-xs">
-                                <option defaultValue>Buyer</option>
-                                <option>Seller</option>
+                                <option defaultValue>buyer</option>
+                                <option>seller</option>
 
                             </select>
                         </div>

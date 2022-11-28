@@ -7,11 +7,11 @@ const Home = () => {
 
     const { data: advertisedBooks = [], isLoading, refetch } = useQuery({
         queryKey: ['advertisedBooks'],
-        queryFn: () => fetch(`https://recyclelib-server.vercel.app/advertisement`)
+        queryFn: () => fetch(`http://localhost:5000/advertisement`)
             .then(res => res.json())
     })
     useEffect(() => {
-        fetch('https://recyclelib-server.vercel.app/categories')
+        fetch('http://localhost:5000/categories')
             .then(res => res.json())
             .then(data => {
                 setCategories(data);

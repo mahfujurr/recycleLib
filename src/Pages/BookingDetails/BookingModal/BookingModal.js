@@ -24,7 +24,7 @@ const BookingModal = ({ bookDetails }) => {
             photo
         }
 
-        fetch('https://recyclelib-server.vercel.app/modalinfo', {
+        fetch('http://localhost:5000/modalinfo', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

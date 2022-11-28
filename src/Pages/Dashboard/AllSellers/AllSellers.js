@@ -1,12 +1,30 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import toast from 'react-hot-toast';
+import Loading from '../../Shared/Loading/Loading';
 
 const AllSellers = () => {
     const { data: allSeller = [], isLoading, refetch } = useQuery({
         queryKey: ['allSeller'],
-        queryFn: () => fetch(`https://recyclelib-server.vercel.app/users/seller`)
+        queryFn: () => fetch(`http://localhost:5000/users/seller`)
             .then(res => res.json())
     })
+    const handleDelete = (id) => {
+        fetch(`http://localhost:5000/users/${id}`, {
+            method: 'DELETE',
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.deletedCount > 0) {
+                    refetch();
+                    toast.success('User deleted successfully');
+                }
+            })
+    }
+    if(isLoading){
+        return <Loading></Loading>
+    }
     return (
         <div>
             <table className="table text-center w-full backdrop-blur-sm bg-white/30">
@@ -21,12 +39,12 @@ const AllSellers = () => {
                 </thead>
                 <tbody>
                     {
-                        allSeller.map((buyer, i) => <tr key={buyer._id}>
+                        allSeller.map((seller, i) => <tr key={seller._id}>
                             <th>{i + 1}</th>
-                            <td>{buyer.name}</td>
-                            <td>{buyer.email}</td>
-                            <td><button className='btn btn-xs btn-danger'>{buyer?.status === 'varified' ? 'Verified' : 'Not verified'}</button></td>
-                            <td><button className='btn btn-xs btn-danger'>Delete</button></td>
+                            <td>{seller.name}</td>
+                            <td>{seller.email}</td>
+                            <td><button className='btn btn-xs btn-danger'>{seller?.status === 'varified' ? 'Verified' : 'Not verified'}</button></td>
+                            <td><button onClick={() => handleDelete(seller._id)} className='btn btn-xs btn-danger'>Delete</button></td>
                         </tr>)
                     }
 
