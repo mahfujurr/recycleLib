@@ -118,7 +118,7 @@ const Login = () => {
                         <label className="label"> <span className="label-text">Forget Password?</span></label>
                         {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                     </div>
-                    <input className='px-3 py-2 rounded-xl text-white bg-black border-2 hover:bg-white hover:text-black w-full ' value="Login" type="submit" />
+                    <button><input className='px-3 py-2 rounded-xl text-white bg-black border-2 hover:bg-white hover:text-black w-full ' value="Login" type="submit" /></button>
                     <div>
                         {loginError && <p className='text-red-600'>{loginError}</p>}
                     </div>
