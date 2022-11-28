@@ -94,8 +94,8 @@ const Login = () => {
     }
 
     return (
-        <div className=' flex justify-center items-center'>
-            <div className='w-96 p-7'>
+        <div className=' flex justify-center items-center my-2'>
+            <div className='w-96 p-7 border border-black/40 rounded-2xl drop-shadow-sm'>
                 <h2 className='text-xl text-center'>Login</h2>
                 <form onSubmit={handleSubmit(handleLogin)}>
                     <div className="form-control w-full max-w-xs">
@@ -118,7 +118,7 @@ const Login = () => {
                         <label className="label"> <span className="label-text">Forget Password?</span></label>
                         {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                     </div>
-                    <button><input className='px-3 py-2 rounded-xl text-white bg-black border-2 hover:bg-white hover:text-black w-full ' value="Login" type="submit" /></button>
+                    <button className='px-3 py-2 rounded-xl text-white bg-black border-2 hover:bg-white hover:text-black w-full ease-in-out duration-300 ' value="Login" type="submit">Login</button>
                     <div>
                         {loginError && <p className='text-red-600'>{loginError}</p>}
                     </div>

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Home = () => {
     const [categories, setCategories] = useState([]);
 
-    const { data: advertisedBooks = [], isLoading, refetch } = useQuery({
+    const { data: advertisedBooks = [] } = useQuery({
         queryKey: ['advertisedBooks'],
         queryFn: () => fetch(`https://recyclelib-server.vercel.app/advertisement`)
             .then(res => res.json())
@@ -36,7 +36,7 @@ const Home = () => {
                             advertisedBooks.map(book =>
 
                                 <Link key={book._id} to={`/categories/${book.bookCategory}`}>
-                                    <h1 className='py-5 px-10 rounded-2xl backdrop-blur-sm bg-white/30'>{book.bookName}</h1>
+                                    <h1 className='py-5 ease-in-out duration-300 px-10 rounded-2xl backdrop-blur-sm bg-white/30'>{book.bookName}</h1>
 
                                 </Link>
 
@@ -54,7 +54,7 @@ const Home = () => {
             </div>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
                 {
-                    categories.map(c => <Link key={c._id} to={`/categories/${c.categoryid}`}><h1 className='p-7 text-3xl font-semibold backdrop-blur-sm bg-white/40 rounded-2xl hover:bg-white/60'>{c.category}</h1></Link>)
+                    categories.map(c => <Link key={c._id} to={`/categories/${c.categoryid}`}><h1 className='p-7 ease-in-out duration-300 text-3xl font-semibold backdrop-blur-sm bg-white/40 rounded-2xl hover:bg-white/60'>{c.category}</h1></Link>)
                 }
 
 
@@ -64,7 +64,7 @@ const Home = () => {
                     <h1 className='text-2xl font-semibold mb-5'>Keep getting our updates</h1>
                     <input type="text" className='rounded-2xl p-2 text-black' placeholder='Email' />
                     
-                        <button className='ml-3 px-3 py-2 rounded-xl border-2 hover:bg-white hover:text-black'>Subscribe</button>
+                        <button className='ml-3 ease-in-out duration-300 px-3 py-2 rounded-xl border-2 hover:bg-white hover:text-black'>Subscribe</button>
                     
                 </div>
             </div>

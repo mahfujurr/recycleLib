@@ -138,7 +138,7 @@ const SignUp = () => {
 
                             </select>
                         </div>
-                        <input className=' px-3 py-2 rounded-xl text-white bg-black border-2 hover:bg-white hover:text-black w-full mt-4' value="Register" type="submit" />
+                        <button className='ease-in-out duration-300 px-3 py-2 rounded-xl text-white bg-black border-2 hover:bg-white hover:text-black w-full mt-4' value="Register" type="submit">Register</button>
                         {signUpError && <p className='text-red-600'>{signUpError}</p>}
                     </form>
                     <p>Already have an account <Link className='text-purple-400' to="/login">Please Login</Link></p>

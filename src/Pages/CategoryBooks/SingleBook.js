@@ -7,7 +7,7 @@ const SingleBook = ({ bookDetails, setBookDetails }) => {
     
     return (
         <div>
-            <div className='flex py-5 lg:mx-48 rounded-2xl backdrop-blur-sm bg-white/30 justify-center items-center'>
+            <div className=' flex py-5 lg:mx-48 rounded-2xl backdrop-blur-sm bg-white/30 justify-center items-center'>
                 <img src={photo} className='w-1/4 ' alt="" />
                 <div className='font-semibold ml-10 w-1/3'>
                     <h1 className='text-xl font-bold'>Book Name: {bookName}</h1>

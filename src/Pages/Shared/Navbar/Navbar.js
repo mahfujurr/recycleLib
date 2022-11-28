@@ -17,16 +17,16 @@ const Navbar = () => {
         <div className=''>
             <div className="navbar lg:px-16  justify-between items-center lg:flex-row bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 ">
                 <div className=' hidden lg:flex navbar-start'>
-                    <Link className='mx-5' to='/'>Homepage</Link>
+                    <Link className='mx-5 ease-in-out duration-300 hover:font-semibold' to='/'>Homepage</Link>
                     {
                         user?.uid
                             ?
-                            <Link className='mr-5' to='/dashboard'>DashBoard</Link>
+                            <Link className='mr-5 ease-in-out duration-300 hover:font-semibold' to='/dashboard'>DashBoard</Link>
                             :
                             <></>
                     }
-                    <Link className='mr-5' to='blog'>Blog</Link>
-                    <Link className='mr-5' >About</Link>
+                    <Link className='mr-5 ease-in-out duration-300 hover:font-semibold' to='/blog'>Blog</Link>
+                    <Link className='mr-5 ease-in-out duration-300 hover:font-semibold' to='/about' >About</Link>
                 </div>
                 <div className="ml-5 md:ml-0 lg:hidden navbar-start">
                     <div className="dropdown">
@@ -53,12 +53,12 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     {user?.email ?
-                        <Link to='/signup'><button onClick={handleLogOut} className="inline-flex items-center bg-black border-0 py-2 px-4 font-medium  hover:bg-black/80 rounded-2xl text-white">SignOut</button></Link>
+                        <Link to='/signup'><button onClick={handleLogOut} className="inline-flex items-center bg-black border-0 py-2 px-4 font-medium  hover:bg-black/80 rounded-2xl text-white ease-in-out duration-300">SignOut</button></Link>
 
                         :
                         <div className="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
 
-                            <Link to='/login'><button className="inline-flex items-center bg-black border-0 py-2 px-4 font-medium  hover:bg-black/80 rounded-2xl text-white lg:mr-3">Login</button></Link>
+                            <Link to='/login'><button className="inline-flex items-center bg-black border-0 py-2 px-4 font-medium  hover:bg-black/80 rounded-2xl text-white lg:mr-3 ease-in-out duration-300">Login</button></Link>
                             
                         </div>
                     }
