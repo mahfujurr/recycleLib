@@ -5,7 +5,6 @@ import img from '../../../Assets/Screenshot_2022-11-27_104711-removebg-preview.p
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
-    // const location = useLocation()
     const nav = useNavigate()
     const handleLogOut = () => {
         logOut()
