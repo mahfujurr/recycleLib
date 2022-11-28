@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+
 const Home = () => {
     const [categories, setCategories] = useState([]);
 
@@ -27,6 +28,7 @@ const Home = () => {
             <div className='mt-10'>
                 <img className='rounded-2xl' src="https://images.unsplash.com/photo-1529473814998-077b4fec6770?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="" />
             </div>
+
             {advertisedBooks.length > 0 &&
                 <div className='text-4xl font-bold'>
                     <h1 className='py-5'>Advertised Book</h1>

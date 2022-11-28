@@ -41,9 +41,6 @@ const BookingModal = ({ bookDetails }) => {
                     toast.error(data.message);
                 }
             })
-
-
-    
     }
     return (
         <div>

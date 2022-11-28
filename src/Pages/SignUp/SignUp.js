@@ -71,7 +71,7 @@ const SignUp = () => {
                 updateUser(userInfo)
                     .then(() => {
                         saveUser(user.displayName, user.email, role);
-                        navigate(from, { replace: true });
+                        
                     })
                     .catch(err => console.log(err));
 
@@ -92,6 +92,7 @@ const SignUp = () => {
         })
             .then(res => res.json())
             .then(data => {
+                navigate(from, { replace: true });
                 // setCreatedUserEmail(email);
             })
     }

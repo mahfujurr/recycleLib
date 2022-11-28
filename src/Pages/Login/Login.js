@@ -61,16 +61,7 @@ const Login = () => {
                 //     localStorage.setItem('token', data.token);
                 //     navigate(from, { replace: true });
                 // })
-                const role = 'buyer'
-                const userInfo = {
-                    role: role
-                }
-                updateUser(userInfo)
-                    .then(() => {
-                        console.log(user.displayName, user.email, role);
-                        saveUser(user.displayName, user.email, role);
-                    })
-                    .catch(err => console.log(err));
+                
                 navigate(from, { replace: true });
             }).catch((error) => {
                 console.log(error)
@@ -78,20 +69,6 @@ const Login = () => {
             });
     }
 
-    const saveUser = (name, email, role) => {
-        const user = { name, email, role };
-        fetch('https://recyclelib-server.vercel.app/users', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(user)
-        })
-            .then(res => res.json())
-            .then(data => {
-                // setCreatedUserEmail(email);
-            })
-    }
 
     return (
         <div className=' flex justify-center items-center my-2'>
