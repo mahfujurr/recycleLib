@@ -12,6 +12,7 @@ const BookingModal = ({ bookDetails }) => {
         const userName = user.displayName;
         const phone = form.phone.value;
         const price = bookDetails.bookPrice;
+        const photo = bookDetails.photo;
         const buyerLocation = form.location.value;
         const info = {
             bName,
@@ -19,7 +20,8 @@ const BookingModal = ({ bookDetails }) => {
             userName,
             phone,
             price,
-            buyerLocation
+            buyerLocation,
+            photo
         }
 
         fetch('https://recyclelib-server.vercel.app/modalinfo', {

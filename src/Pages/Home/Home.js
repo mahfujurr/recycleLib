@@ -1,8 +1,15 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
     const [categories, setCategories] = useState([]);
+
+    const { data: advertisedBooks = [], isLoading, refetch } = useQuery({
+        queryKey: ['advertisedBooks'],
+        queryFn: () => fetch(`https://recyclelib-server.vercel.app/advertisement`)
+            .then(res => res.json())
+    })
     useEffect(() => {
         fetch('https://recyclelib-server.vercel.app/categories')
             .then(res => res.json())
@@ -20,11 +27,24 @@ const Home = () => {
             <div className='mt-10'>
                 <img className='rounded-2xl' src="https://images.unsplash.com/photo-1529473814998-077b4fec6770?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="" />
             </div>
+            {advertisedBooks &&
+                <div className='text-4xl font-bold'>
+                    <h1 className='py-5'>Advertised Book</h1>
+                    <div className='grid grid-cols-1 md:grid-cols-3 gap-5 '>
 
-            {
-                <div className='text-4xl font-bold py-10'>
-                    <h1>Advertised items</h1>
-                    <div>
+                        {
+                            advertisedBooks.map(book =>
+                                
+                                    <Link key={book._id} to={`/categories/${book.bookCategory}`}>
+                                        <h1 className='py-5 px-10 rounded-2xl backdrop-blur-sm bg-white/30'>{book.bookName}</h1>
+
+                                    </Link>
+                                
+
+
+                            )
+                        }
+
 
                     </div>
                 </div>
@@ -39,7 +59,7 @@ const Home = () => {
 
 
             </div>
-        </div>
+        </div >
     );
 };
 

@@ -1,37 +1,53 @@
-import React, { useContext} from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../Context/AuthProvider';
 import toast from 'react-hot-toast';
 
 const AddBooks = () => {
-  
+
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { user } = useContext(AuthContext);
     const handleAdd = (data) => {
         const bookName = data.bookName;
         const bookPrice = data.price;
+        const bookOriginalPrice = data.oPrice;
         const bookCondition = data.condition;
         const mobileNumber = data.mobileNumber;
         const bookownerLocation = data.bookownerLocation;
         const bookCategory = data.bookCategory;
         const bookDetails = data.bookDetails;
         const bookPYear = data.bookPYear;
+        const bookUsedYear = data.bookUsedYear;
+        const bookSoldStatus = 'Available';
         const email = user.email;
+        const sellerName = user.displayName;
         const photo = data.photoURL;
-        
+
+        const today = new Date();
+        const dd = String(today.getDate()).padStart(2, '0');
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        const yyyy = today.getFullYear();
+
+        const dateTime = mm + '/' + dd + '/' + yyyy + " @ " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();;
+
         const allBooks = {
             bookName,
             bookPrice,
+            bookOriginalPrice,
             bookCondition,
             mobileNumber,
             bookownerLocation,
             bookCategory,
             bookDetails,
             bookPYear,
+            bookUsedYear,
             email,
+            sellerName,
             photo,
-            
+            dateTime,
+            bookSoldStatus
+
         }
         console.log(allBooks)
         fetch('https://recyclelib-server.vercel.app/allbooks', {
@@ -44,9 +60,9 @@ const AddBooks = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
-                    toast.success('Booking Successful');
+                    toast.success('Book added Successfully');
                 }
-                
+
             })
 
     }
@@ -64,51 +80,66 @@ const AddBooks = () => {
                         <div className="form-control w-full max-w-xs">
                             <label className="label"> <span className="label-text">Book Name</span></label>
                             <input type="text" {...register("bookName", {
-                                required: "Name is Required"
+                                required: "Required"
                             })} className="input input-bordered w-full max-w-xs input-sm" />
-                            {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+
                         </div>
                         <div className="form-control w-full max-w-xs">
                             <label className="label"> <span className="label-text">Price</span></label>
                             <input defaultValue={'$'} type="text" {...register("price", {
-                                required: "Name is Required"
+                                required: "Required"
                             })} className="input input-bordered w-full max-w-xs input-sm" />
-                            {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+
+                        </div>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label"> <span className="label-text">Orginal Price</span></label>
+                            <input defaultValue={'$'} type="text" {...register("oPrice", {
+                                required: "Required"
+                            })} className="input input-bordered w-full max-w-xs input-sm" />
+
                         </div>
                         <div className="form-control w-full max-w-xs">
                             <label className="label"> <span className="label-text">Phone Number</span></label>
                             <input defaultValue={'+880'} type="text" {...register("mobileNumber", {
-                                required: "Name is Required"
+                                required: "Required"
                             })} className="input input-bordered w-full max-w-xs input-sm" />
-                            {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+
                         </div>
                         <div className="form-control w-full max-w-xs">
                             <label className="label"> <span className="label-text">Location</span></label>
                             <input type="text" {...register("bookownerLocation", {
-                                required: "Name is Required"
+                                required: "Required"
                             })} className="input input-bordered w-full max-w-xs input-sm" />
-                            {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+
                         </div>
                         <div className="form-control w-full max-w-xs">
                             <label className="label"> <span className="label-text">Book Details</span></label>
                             <input type="text" {...register("bookDetails", {
-                                required: "Name is Required"
+                                required: "Required"
                             })} className="input input-bordered w-full max-w-xs input-sm" />
-                            {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+
                         </div>
                         <div className="form-control w-full max-w-xs">
                             <label className="label"> <span className="label-text">Book Purchasing Year</span></label>
                             <input type="text" {...register("bookPYear", {
-                                required: "Name is Required"
+                                required: "Required"
                             })} className="input input-bordered w-full max-w-xs input-sm" />
-                            {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+
                         </div>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label"> <span className="label-text">Book using period</span></label>
+                            <input type="text" {...register("bookUsedYear", {
+                                required: "Required"
+                            })} className="input input-bordered w-full max-w-xs input-sm" />
+
+                        </div>
+
                         <div className="form-control w-full max-w-xs">
                             <label className="label"> <span className="label-text">Book Picture</span></label>
                             <input type="text" {...register("photoURL", {
-                                required: "Name is Required"
+                                required: "Required"
                             })} className="input input-bordered w-full max-w-xs input-sm" />
-                            {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+
                         </div>
 
                         <div className="form-control w-full max-w-xs">

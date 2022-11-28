@@ -4,7 +4,7 @@ import Loading from '../../Shared/Loading/Loading';
 
 const MyOrders = () => {
     const [bookedInfo, setBookedInfo] = useState([]);
-    const { user , isLoading} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     useEffect(() => {
         fetch(`https://recyclelib-server.vercel.app/dashboard/mybook/${user?.email}`)
             .then(res => res.json())
